@@ -16,8 +16,8 @@ def addMesh(array, name, collection_name):
     newVerts = []
     for i in range(len(array)):
         if i % 2 == 0:
-            x = array[i]/1000
-            y = array[i+1]/1000
+            x = array[i]/200
+            y = array[i+1]/200
             value = mathutils.Vector((x, y, 0))
             newVerts.append(value)
     
@@ -88,10 +88,10 @@ def addConnections(stitch, connected_pattern):
         
         if i % 4 == 0:
             # create tuple
-            selected_verts[i] = (stitch[i]/1000, stitch[i+1]/1000, stitch[i+2]/1000, stitch[i+3]/1000)
+            selected_verts[i] = (stitch[i]/200, stitch[i+1]/200, stitch[i+2]/200, stitch[i+3]/200)
         
         if i % 2 == 0:
-            verts_between_edges[count] = (stitch[i]/1000, stitch[i+1]/1000)
+            verts_between_edges[count] = (stitch[i]/200, stitch[i+1]/200)
             count += 1
     
     vert_boundaries_first_mesh = []
@@ -306,8 +306,11 @@ class SynthPatternStitch(bpy.types.Operator):
         stitchPair1 = [282, 136, 310, 136, 281, 436, 311, 436]
         stitchPair2 = [515, 238, 524, 238, 512, 437, 528, 437]
         stitchPair3 = [79, 237, 905, 237, 80, 437, 905, 436]
+        stitchPair4 = [62, 610, 357, 610, 108, 879, 312, 880]
+        stitchPair5 = [657, 610, 362, 610, 612, 880, 408, 879]
         
-        stitchArray = [stitchPair1, stitchPair2, stitchPair3]
+        
+        stitchArray = [stitchPair1, stitchPair2, stitchPair3, stitchPair4, stitchPair5]
 
         name = ["meshOne"]
         

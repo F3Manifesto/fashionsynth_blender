@@ -12,3 +12,5 @@ class SynthPatternMeshesPanel(bpy.types.Panel):
         
         row = layout.row()
         row.label(text="Pattern Meshes")
+        
+        # function here that imports the mesh with stitching into the scene i.e the operator of add pattern
