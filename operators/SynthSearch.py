@@ -1,0 +1,6 @@
+import web3storage
+
+ws = web3storage.Client(api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE0NjZENmM5NTRDMDJBZUZhQzFlRjhiODZiZTNGNmVGYzcwREE3ODQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjM5MDg3ODMzNjEsIm5hbWUiOiJpbmFyaXN5bnRoIn0.1rbxOm5jwe1c1Z2cJbU2ljKsrX2ArZQrSVlrO1UftKU")
+l = ws.list_uploads()
+
+print(l)
