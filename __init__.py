@@ -10,35 +10,32 @@ bl_info = {
 }
 
 import bpy
-import os
-#from panels.SynthInputPrompt import SynthInputPrompt
-#from panels.SynthPatternDetectionPanel import SynthPatternDetectionPanel
-#from panels.SynthPatternMeshesPanel import SynthPatternMeshesPanel
-#from panels.SynthTexturesGeneratePanel import SynthTexturesGeneratePanel
-#from panels.SynthIRLSewingPanel import SynthIRLSewingPanel
-#from panels.SynthInputPrompt import SynthInputPrompt
-#import SynthInstallPackages
+from .panels.SynthUserInputs import SynthUserInputs
+from .panels.SynthGarmentUploadPanel import SynthGarmentUploadPanel, SynthGarmentProperties
+from .operators.SynthInstallPackages import SynthInstallPackages
+from .operators.SynthGenerateGarment import SynthGenerateGarment
 
-subfolders = next(os.walk('.'))[1]
-print(subfolders)
-#    
-#classes = [SynthInstallPackages, SynthRunPromptPanel, SynthPatternDetectionPanel, SynthPatternMeshesPanel, SynthTexturesGeneratePanel, SynthIRLSewingPanel, SynthInputPrompt]
-#bpy.utils.register_class(SynthUserInputs)
+classes = [
+    SynthUserInputs,
+    SynthGarmentProperties,
+    SynthGarmentUploadPanel,
+    SynthInstallPackages,
+    SynthGenerateGarment
+]
 
-#def register():
-#    
-#    for cls in classes:
-#        bpy.utils.register_class(cls)
-#        
-#    bpy.types.Scene.input_tool = bpy.props.PointerProperty(type=SynthUserInputs)
-#        
-#def unregister():
-#    for cls in classes:
-#        bpy.utils.unregister_class(cls)
-#    
-#    del bpy.types.Scene.input_tool
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    
+    bpy.types.Scene.input_tool = bpy.props.PointerProperty(type=SynthUserInputs)
+    bpy.types.Scene.synth_garment_props = bpy.props.PointerProperty(type=SynthGarmentProperties)
+        
+def unregister():
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
+    
+    del bpy.types.Scene.input_tool
+    del bpy.types.Scene.synth_garment_props
 
-
-#if __name__ == "__main__":
-#    register()
-##    unregister()
+if __name__ == "__main__":
+    register()
