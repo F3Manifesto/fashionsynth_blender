@@ -1,41 +1,20 @@
 bl_info = {
     "name": "FashionSynth",
     "author": "Emma-Jane MacKinnon-Lee",
-    "version": (1,0),
-    "blender": (3,2,2),
-    "location": "View3D > Sidebar > Fashion Synth",
+    "version": (1, 0),
+    "blender": (3, 2, 2),
+    "location": "View3D > Sidebar > FashionSynth",
     "warning": "Testing in Prod",
-    "wiki_url": "diysynth.xyz",
-    "Category": "Development"
+    "wiki_url": "coinop.themanufactory.xyz",
+    "category": "Development"
 }
 
-import bpy
-from .panels.SynthUserInputs import SynthUserInputs
-from .panels.SynthGarmentUploadPanel import SynthGarmentUploadPanel, SynthGarmentProperties
-from .operators.SynthInstallPackages import SynthInstallPackages
-from .operators.SynthGenerateGarment import SynthGenerateGarment
+import sys
+import os
 
-classes = [
-    SynthUserInputs,
-    SynthGarmentProperties,
-    SynthGarmentUploadPanel,
-    SynthInstallPackages,
-    SynthGenerateGarment
-]
+addon_dir = os.path.dirname(os.path.realpath(__file__))
+if addon_dir not in sys.path:
+    sys.path.append(addon_dir)
 
-def register():
-    for cls in classes:
-        bpy.utils.register_class(cls)
-    
-    bpy.types.Scene.input_tool = bpy.props.PointerProperty(type=SynthUserInputs)
-    bpy.types.Scene.synth_garment_props = bpy.props.PointerProperty(type=SynthGarmentProperties)
-        
-def unregister():
-    for cls in classes:
-        bpy.utils.unregister_class(cls)
-    
-    del bpy.types.Scene.input_tool
-    del bpy.types.Scene.synth_garment_props
-
-if __name__ == "__main__":
-    register()
+# Import everything from the working script
+from script_complete import *
